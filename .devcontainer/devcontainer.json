@@ -1,0 +1,12 @@
+{
+  "name": "apmic-ui",
+  "build": {
+    "context": "../",
+    "dockerfile": "Dockerfile",
+    "args": {
+      "REPO_PATH": "/workspaces/apmic-ui"
+    }
+  },
+  "forwardPorts": [9000],
+  "remoteUser": "node"
+}
