@@ -11,6 +11,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@master/css": "^2.0.0-rc.45",
+    "@master/css.vue": "^2.0.0-rc.45",
     "pinia": "^2.1.7",
     "vue": "^3.4.29"
   },
