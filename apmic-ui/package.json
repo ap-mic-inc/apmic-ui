@@ -4,13 +4,13 @@
   "description": "Internal Components used by APMIC",
   "author": "dwkeis-apmic",
   "private": false,
-  "main": "./dist/my-component-library.umd.js",
-  "module": "./dist/my-component-library.mjs",
+  "main": "./dist/apmic-ui.umd.js",
+  "module": "./dist/apmic-ui.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/my-component-library.mjs",
-      "require": "./dist/my-component-library.umd.js"
+      "import": "./dist/apmic-ui.mjs",
+      "require": "./dist/apmic-ui.umd.js"
     }
   },
   "files": [

@@ -19,8 +19,8 @@ export default defineConfig({
     lib: {
       // eslint-disable-next-line no-undef
       entry: resolve(__dirname, 'src/index.js'),
-      name: 'MyComponentLibrary',
-      fileName: 'my-component-library'
+      name: 'APMICComponentLibrary',
+      fileName: 'apmic-ui'
     },
     rollupOptions: {
       external: ['vue'],
