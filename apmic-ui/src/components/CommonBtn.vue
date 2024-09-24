@@ -1,6 +1,10 @@
 <template>
-  <button class="btn" :class="{ flat, dense, outline, dark, light }" @click="$emit('click')">
-    <slot name="icon"></slot>
+  <button
+    class="btn flex jc:center"
+    :class="{ flat, dense, outline, dark, light, disable, colorbase }"
+    :disabled="disable"
+    @click="$emit('click')"
+  >
     <slot></slot>
   </button>
 </template>
@@ -24,6 +28,14 @@ defineProps({
     default: false
   },
   light: {
+    type: Boolean,
+    default: false
+  },
+  colorbase: {
+    type: Boolean,
+    default: false
+  },
+  disable: {
     type: Boolean,
     default: false
   }
