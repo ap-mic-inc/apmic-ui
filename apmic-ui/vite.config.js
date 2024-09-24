@@ -19,8 +19,8 @@ export default defineConfig({
     lib: {
       // eslint-disable-next-line no-undef
       entry: resolve(__dirname, 'src/index.js'),
-      name: 'APMICComponentLibrary',
-      fileName: 'apmic-ui'
+      name: 'APMIC-UI',
+      fileName: (format) => `apmic-ui.${format}.js`
     },
     rollupOptions: {
       external: ['vue'],
@@ -38,5 +38,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  preview: {
+    port: 9000
   }
 })

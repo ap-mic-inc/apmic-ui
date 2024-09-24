@@ -5,11 +5,11 @@
   "author": "dwkeis-apmic",
   "private": false,
   "main": "./dist/apmic-ui.umd.js",
-  "module": "./dist/apmic-ui.mjs",
+  "module": "./dist/apmic-ui.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/apmic-ui.mjs",
+      "import": "./dist/apmic-ui.es.js",
       "require": "./dist/apmic-ui.umd.js"
     }
   },
@@ -19,7 +19,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --port 8000",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
