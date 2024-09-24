@@ -8,7 +8,12 @@
       <div class="f:20 f:bold">Quick Start</div>
       <div class="">Using npm to install the library first.</div>
       <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4 mt:10">
-        <CodeSnippet code="npm install xxx" language="cmake" :defaultShow="true" />
+        <CodeSnippet code="npm install apmic-ui" language="cmake" :defaultShow="true" />
+      </div>
+
+      <div class="mt:20">Import in main.js.</div>
+      <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4 mt:10">
+        <CodeSnippet :code="importCode" language="js" :defaultShow="true" />
       </div>
       <div class="mt:10">
         ...And kindly check our components page and look for the sample code! There you go!
@@ -19,4 +24,9 @@
 
 <script setup>
 import CodeSnippet from '@/components/CodeSnippet.vue'
+
+const importCode = `import apmic-ui from 'apmic-ui'
+
+app.use(router)
+`
 </script>
