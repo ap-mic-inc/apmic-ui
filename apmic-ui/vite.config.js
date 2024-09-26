@@ -7,39 +7,59 @@ import { resolve } from 'path'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-    dts({
-      insertTypesEntry: true
-    })
-  ],
-  build: {
-    lib: {
-      // eslint-disable-next-line no-undef
-      entry: resolve(__dirname, 'src/index.js'),
-      name: 'APMIC-UI',
-      fileName: (format) => `apmic-ui.${format}.js`
-    },
-    rollupOptions: {
-      external: ['vue'],
-      output: {
-        globals: {
-          vue: 'Vue'
+export default defineConfig(({ mode }) => {
+  if (mode === 'lib') {
+    // Library build configuration
+    return {
+      build: {
+        lib: {
+          entry: resolve(__dirname, 'src/index.js'),
+          name: 'APMIC-UI',
+          fileName: (format) => `apmic-ui.${format}.js`,
+        },
+        rollupOptions: {
+          external: ['vue'],
+          output: {
+            globals: {
+              vue: 'Vue',
+            },
+          },
+        },
+      },
+      plugins: [
+        vue(),
+        dts({
+          insertTypesEntry: true
+        })
+      ],
+      resolve: {
+        alias: {
+          '@': fileURLToPath(new URL('./src', import.meta.url))
         }
       }
-    }
-  },
-  server: {
-    port: 9000
-  },
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  },
-  preview: {
-    port: 9000
+    };
   }
+
+  return {
+    plugins: [
+      vue(),
+      vueDevTools(),
+      dts({
+        insertTypesEntry: true
+      })
+    ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url))
+      }
+    },
+    server: {
+      port: 9000,
+      open: true,
+    },
+    preview: {
+      port: 8000,
+      open: true
+    }
+  };
 })
