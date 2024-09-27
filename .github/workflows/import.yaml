@@ -1,0 +1,33 @@
+name: "Terraform Import"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terraform-import-resource-group:
+    name: "Import Resource Group"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.2
+      - name: "Terraform Init"
+        run: terraform init -input=false -backend-config=default.conf
+        working-directory: ./ci/static_web_app
+        env:
+          ARM_ACCESS_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+      - name: "Terraform Import"
+        run: terraform import -var-file=default.tfvars "azurerm_resource_group.rg" "/subscriptions/a58b0925-596a-47b2-9901-bbcf2f1ece0b/resourceGroups/apmic-rg"
+        working-directory: ./ci/static_web_app
+        env:
+          ARM_ACCESS_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+          TF_VAR_github_token: ${{ secrets.GITHUB_TOKEN }}
