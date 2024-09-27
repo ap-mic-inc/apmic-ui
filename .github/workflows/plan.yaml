@@ -1,0 +1,59 @@
+name: "Terraform Plan"
+
+on:
+  pull_request:
+
+jobs:
+  terraform-plan:
+    name: "Plan"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.2
+      - name: "Terraform Init"
+        run: terraform init -input=false -backend-config=default.conf
+        working-directory: ./ci/static_web_app
+        env:
+          ARM_ACCESS_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+      - name: "Terraform Plan"
+        id: plan
+        run: terraform plan -input=false -no-color -var-file=default.tfvars
+        working-directory: ./ci/static_web_app
+        env:
+          ARM_ACCESS_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+      - name: "Terraform Comment"
+        uses: actions/github-script@v6
+        env:
+          STDOUT: "```${{ steps.plan.outputs.stdout }}```"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: process.env.STDOUT
+            })
+  terraform-scan:
+    name: "Scan"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: "Setup - Security Scan"
+        uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
