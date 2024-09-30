@@ -10,9 +10,15 @@
       @click="toggleDropdown"
     >
       <div>
-        <div v-if="selectedOption">{{ selectedOption }}</div>
-        <div v-if="!selectedOption" id="placeholder" class="color:#BFCFD4 transition:color|300ms">
-          {{ placeholder }}
+        <div v-if="selectedOption">
+          <slot name="selected-option" :option="selectedOption">
+            {{ selectedOption.label || selectedOption.title || selectedOption.name }}
+          </slot>
+        </div>
+        <div v-else id="placeholder" class="color:#BFCFD4 transition:color|300ms">
+          <slot name="placeholder">
+            {{ placeholder }}
+          </slot>
         </div>
       </div>
 
@@ -58,7 +64,9 @@
         class="bg:rgba(0,0,0,0.05):hover p:8 cursor:pointer color:#27353A"
         @click="selectOption(event, option)"
       >
-        {{ option.label }}
+        <slot name="option" :option="option">
+          {{ option.label || option.title || option.name }}
+        </slot>
       </div>
     </div>
     <div
@@ -104,8 +112,7 @@ const isValid = ref(true)
 const errorMessage = ref('')
 
 const selectedOption = computed(() => {
-  const option = props.options.find((opt) => opt.value === props.modelValue)
-  return option ? option.label : null
+  return props.options.find((opt) => opt.value === props.modelValue)
 })
 
 const toggleDropdown = () => {
