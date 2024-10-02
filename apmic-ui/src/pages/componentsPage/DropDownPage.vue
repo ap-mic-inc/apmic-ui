@@ -82,6 +82,9 @@
           clearable
           placeholder="Choose an option"
         >
+          <template #selected-option="{ option }">
+            {{ option.label }}
+          </template>
           <template #placeholder><div class="f:bold">123123</div></template>
           <template #option="{ option }"
             ><div>?_? {{ option.label }}</div></template
@@ -195,9 +198,23 @@ const dropdownModifyCode = `<DropdownMenu
   clearable
   placeholder="Choose an option"
 >
+  <template #selected-option="{ option }">
+    {{ option.label }}
+  </template>
   <template #placeholder><div class="f:bold">123123</div></template>
   <template #option="{ option }"
     ><div>?_? {{ option }}</div></template
   >
-</DropdownMenu>`
+</DropdownMenu>
+
+
+const selectedValue = ref(null)
+
+const dropdownOptions = [
+  { value: 1, label: 'Option 1' },
+  { value: 2, label: 'Option 2' },
+  { value: 3, label: 'Option 3' },
+  { value: 4, label: 'Option 4' },
+  { value: 5, label: 'Option 5' }
+]`
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div ref="selectRef" class="rel fit pb:20 w:200">
     <div
+      id="selected-option"
       class="row ai:center jc:space-between gap:8 p:8|16 h:44 w:full r:4 bg:white cursor:pointer color:#27353A:hover:not(:disabled)_#placeholder transition:all|300ms"
       :class="{
         'b:1|solid|#27353A! color:#27353A!': isActive,
@@ -55,13 +56,14 @@
       </div>
     </div>
     <div
+      id="options"
       class="abs z:99 left:0 top:44 w:full r:4 py:4 bg:white box-shadow:0|1|3|#BFCFD4 transform:top transition:all|200ms"
       :class="{ 'scaleY(1)': isActive, 'scaleY(0)': !isActive }"
     >
       <div
         v-for="option in options"
         :key="option.value"
-        class="bg:rgba(0,0,0,0.05):hover p:8 cursor:pointer color:#27353A"
+        class="bg:rgba(0,0,0,0.05):hover p:8 cursor:pointer color:#27353A transition:all|200ms"
         @click="selectOption(event, option)"
       >
         <slot name="option" :option="option">
@@ -112,7 +114,7 @@ const isValid = ref(true)
 const errorMessage = ref('')
 
 const selectedOption = computed(() => {
-  return props.options.find((opt) => opt.value === props.modelValue)
+  return props.modelValue
 })
 
 const toggleDropdown = () => {
@@ -124,7 +126,7 @@ const toggleDropdown = () => {
 }
 
 const selectOption = (event, option) => {
-  emit('update:modelValue', option.value)
+  emit('update:modelValue', option)
   isActive.value = false
   document.removeEventListener('click', handleClickOutside)
 }
