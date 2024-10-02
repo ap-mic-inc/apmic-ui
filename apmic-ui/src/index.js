@@ -5,6 +5,7 @@ import DropdownMenu from './components/DropdownMenu.vue'
 import InputBox from './components/InputBox.vue'
 import ListItem from './components/ListItem.vue'
 import ToggleSwitch from './components/ToggleSwitch.vue'
+import presetStyles from '../preset-css'
 
 const components = {
   CheckBox,
@@ -26,4 +27,13 @@ export default {
   install
 }
 
-export { CheckBox, CollapsibleBlock, CommonBtn, DropdownMenu, InputBox, ListItem, ToggleSwitch }
+export {
+  CheckBox,
+  CollapsibleBlock,
+  CommonBtn,
+  DropdownMenu,
+  InputBox,
+  ListItem,
+  ToggleSwitch,
+  presetStyles
+}

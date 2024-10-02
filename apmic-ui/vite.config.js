@@ -12,19 +12,23 @@ export default defineConfig(({ mode }) => {
     // Library build configuration
     return {
       build: {
+        cssCodeSplit: true,
         lib: {
-          entry: resolve(__dirname, 'src/index.js'),
+          entry: {
+            'apmic-ui': resolve(__dirname, 'src/index.js')
+          },
           name: 'APMIC-UI',
-          fileName: (format) => `apmic-ui.${format}.js`,
+          fileName: (format, entryName) => `${entryName}.${format}.js`
         },
         rollupOptions: {
-          external: ['vue'],
+          external: ['vue', 'highlight.js'],
           output: {
             globals: {
               vue: 'Vue',
-            },
-          },
-        },
+              'highlight.js': 'hljs'
+            }
+          }
+        }
       },
       plugins: [
         vue(),
@@ -37,7 +41,7 @@ export default defineConfig(({ mode }) => {
           '@': fileURLToPath(new URL('./src', import.meta.url))
         }
       }
-    };
+    }
   }
 
   return {
@@ -55,11 +59,11 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: 9000,
-      open: true,
+      open: true
     },
     preview: {
       port: 8000,
       open: true
     }
-  };
+  }
 })

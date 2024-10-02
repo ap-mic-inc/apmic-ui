@@ -6,7 +6,8 @@
       :class="{
         'b:1|solid|#27353A! color:#27353A!': isActive,
         'b:1|solid|#BFCFD4': isValid,
-        'b:1|solid|#d21b0f!': !isValid
+        'b:1|solid|#d21b0f!': !isValid,
+        disable
       }"
       @click="toggleDropdown"
     >
@@ -85,7 +86,7 @@ import { ref, computed, watch } from 'vue'
 
 const props = defineProps({
   modelValue: {
-    type: [String, Number],
+    type: Object,
     default: null
   },
   options: {
@@ -103,6 +104,10 @@ const props = defineProps({
   clearable: {
     type: Boolean,
     default: false
+  },
+  disable: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -118,10 +123,12 @@ const selectedOption = computed(() => {
 })
 
 const toggleDropdown = () => {
-  isActive.value = !isActive.value
-  document.addEventListener('click', handleClickOutside)
-  if (!isActive.value) {
-    runValidation()
+  if (!props.disable) {
+    isActive.value = !isActive.value
+    document.addEventListener('click', handleClickOutside)
+    if (!isActive.value) {
+      runValidation()
+    }
   }
 }
 

@@ -68,9 +68,9 @@
       <CodeSnippet :code="dropdownClearableCode" language="xml" />
     </div>
 
-    <!-- Modify SLots -->
+    <!-- Modify Slots -->
     <div>
-      <div class="f:30 f:bold">Modify SLots</div>
+      <div class="f:30 f:bold">Modify Slots</div>
       <div>You can use slots to modify you style of the selected-option, and option-items.</div>
     </div>
 
@@ -93,6 +93,34 @@
       </div>
 
       <CodeSnippet :code="dropdownModifyCode" language="xml" />
+    </div>
+
+    <!-- Disable -->
+    <div>
+      <div class="f:30 f:bold">Disable</div>
+      <div>Disable whole components with disable props.</div>
+    </div>
+
+    <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4">
+      <div class="flex flex:row gap:10 p:10 bb:1|solid|#BFCFD4 bg:white rt:4">
+        <DropdownMenu
+          v-model="selectedValue"
+          :options="dropdownOptions"
+          clearable
+          disable
+          placeholder="Choose an option"
+        >
+          <template #selected-option="{ option }">
+            {{ option.label }}
+          </template>
+          <template #placeholder><div class="f:bold">123123</div></template>
+          <template #option="{ option }"
+            ><div>?_? {{ option.label }}</div></template
+          >
+        </DropdownMenu>
+      </div>
+
+      <CodeSnippet :code="dropdownDisableCode" language="xml" />
     </div>
   </div>
 </template>
@@ -196,6 +224,33 @@ const dropdownModifyCode = `<DropdownMenu
   v-model="selectedValue"
   :options="dropdownOptions"
   clearable
+  placeholder="Choose an option"
+>
+  <template #selected-option="{ option }">
+    {{ option.label }}
+  </template>
+  <template #placeholder><div class="f:bold">123123</div></template>
+  <template #option="{ option }"
+    ><div>?_? {{ option }}</div></template
+  >
+</DropdownMenu>
+
+
+const selectedValue = ref(null)
+
+const dropdownOptions = [
+  { value: 1, label: 'Option 1' },
+  { value: 2, label: 'Option 2' },
+  { value: 3, label: 'Option 3' },
+  { value: 4, label: 'Option 4' },
+  { value: 5, label: 'Option 5' }
+]`
+
+const dropdownDisableCode = `<DropdownMenu
+  v-model="selectedValue"
+  :options="dropdownOptions"
+  clearable
+  disable
   placeholder="Choose an option"
 >
   <template #selected-option="{ option }">
