@@ -75,12 +75,27 @@
     </div>
 
     <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4">
-      <div class="flex flex:row gap:10 p:10 bb:1|solid|#BFCFD4 bg:white rt:4">
+      <div class="flex flex:row gap:10 p:10 bb:1|solid|#BFCFD4 bg:white rt:4 jc:space-between">
         <DropdownMenu
           v-model="selectedValue"
           :options="dropdownOptions"
           clearable
           placeholder="Choose an option"
+        >
+          <template #selected-option="{ option }">
+            {{ option.label }}
+          </template>
+          <template #placeholder><div class="f:bold">123123</div></template>
+          <template #option="{ option }"
+            ><div>?_? {{ option.label }}</div></template
+          >
+        </DropdownMenu>
+        <DropdownMenu
+          v-model="selectedValue"
+          :options="dropdownOptions"
+          clearable
+          placeholder="Choose an option"
+          class="pb:unset! bg:neutral-200!:hover:not(:disabled)>#selected-option w:unset! max-w:280>#options w:280!>#options"
         >
           <template #selected-option="{ option }">
             {{ option.label }}

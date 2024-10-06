@@ -47,23 +47,25 @@
           height="1em"
           viewBox="0 0 24 24"
           class="transition:transform|200ms"
-          :class="{ 'rotate(180)': !isActive }"
+          :class="{ 'rotate(180)': isActive }"
         >
           <path
-            fill="currentColor"
-            d="m12.354 8.854l5.792 5.792a.5.5 0 0 1-.353.854H6.207a.5.5 0 0 1-.353-.854l5.792-5.792a.5.5 0 0 1 .708 0"
+            fill="#adadad"
+            d="m12.37 15.835l6.43-6.63C19.201 8.79 18.958 8 18.43 8H5.57c-.528 0-.771.79-.37 1.205l6.43 6.63c.213.22.527.22.74 0"
           />
         </svg>
       </div>
     </div>
     <div
       id="options"
-      class="abs z:99 left:0 top:44 w:full r:4 py:4 bg:white box-shadow:0|1|3|#BFCFD4 transform:top transition:all|200ms"
-      :class="{ 'scaleY(1)': isActive, 'scaleY(0)': !isActive }"
+      ref="optionsRef"
+      class="abs z:99 top:44 w:full r:4 py:4 bg:white box-shadow:0|1|3|#BFCFD4 transform:top transition:all|200ms"
+      :class="{ 'scaleY(1)': isActive, 'scaleY(0)': !isActive, [`${leftPosition}`]: true }"
     >
       <div
         v-for="option in options"
         :key="option.value"
+        id="options-item"
         class="bg:rgba(0,0,0,0.05):hover p:8 cursor:pointer color:#27353A transition:all|200ms"
         @click="selectOption(event, option)"
       >
@@ -82,7 +84,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   modelValue: {
@@ -114,8 +116,10 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const selectRef = ref(null)
+const optionsRef = ref(null)
 const isActive = ref(false)
 const isValid = ref(true)
+const leftPosition = ref(0)
 const errorMessage = ref('')
 
 const selectedOption = computed(() => {
@@ -151,6 +155,24 @@ const handleClickOutside = (e) => {
     document.removeEventListener('click', handleClickOutside)
   }
 }
+
+const handleResize = () => {
+  if (selectRef.value && optionsRef.value) {
+    const optionsRect = optionsRef.value.getBoundingClientRect()
+    const viewportWidth = window.innerWidth
+
+    leftPosition.value = optionsRect.width + optionsRect.left > viewportWidth ? 'left:0' : 'right:0'
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize)
+  handleResize() // Initial check
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+})
 
 const clearValue = () => {
   emit('update:modelValue', null)
