@@ -21,11 +21,11 @@ export default defineConfig(({ mode }) => {
           fileName: (format, entryName) => `${entryName}.${format}.js`
         },
         rollupOptions: {
-          external: ['vue', 'highlight.js'],
+          external: ['vue', 'vue-router'],
           output: {
             globals: {
               vue: 'Vue',
-              'highlight.js': 'hljs'
+              'vue-router': 'VueRouter'
             }
           }
         }
