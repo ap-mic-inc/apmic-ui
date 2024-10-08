@@ -12,6 +12,6 @@ export default {
     outline: 'bg:none b:1|solid|#27353a! b:1|solid|#bfcfd4!:disabled',
     flat: 'color:gray bg:none bg:rgba(0,0,0,0.1):hover:not(:disabled) color:#BFCFD4:disabled bg:rgba(0,0,0,0.18)!:not(:disabled):active transition:all|200ms transition:none!:active',
     dense: 'p:2! h:24 as:center',
-    disable: 'filter:opacity(0.5)! cursor:not-allowed!'
+    disabled: 'filter:opacity(0.5)! cursor:not-allowed!'
   }
 }

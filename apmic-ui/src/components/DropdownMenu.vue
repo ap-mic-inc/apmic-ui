@@ -7,7 +7,7 @@
         'b:1|solid|#27353A! color:#27353A!': isActive,
         'b:1|solid|#BFCFD4': isValid,
         'b:1|solid|#d21b0f!': !isValid,
-        disable
+        disabled
       }"
       @click="toggleDropdown"
     >
@@ -59,7 +59,7 @@
     <div
       id="options"
       ref="optionsRef"
-      class="abs z:99 top:44 w:full r:4 py:4 bg:white box-shadow:0|1|3|#BFCFD4 transform:top transition:all|200ms"
+      class="abs z:99 top:44 w:full r:4 py:4 bg:white box-shadow:0|5|10|#BFCFD4 transform:top transition:all|200ms"
       :class="{ 'scaleY(1)': isActive, 'scaleY(0)': !isActive, [`${leftPosition}`]: true }"
     >
       <div
@@ -107,7 +107,7 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  disable: {
+  disabled: {
     type: Boolean,
     default: false
   }
@@ -127,7 +127,7 @@ const selectedOption = computed(() => {
 })
 
 const toggleDropdown = () => {
-  if (!props.disable) {
+  if (!props.disabled) {
     isActive.value = !isActive.value
     document.addEventListener('click', handleClickOutside)
     if (!isActive.value) {
@@ -161,13 +161,15 @@ const handleResize = () => {
     const optionsRect = optionsRef.value.getBoundingClientRect()
     const viewportWidth = window.innerWidth
 
-    leftPosition.value = optionsRect.width + optionsRect.left > viewportWidth ? 'left:0' : 'right:0'
+    leftPosition.value = optionsRect.width + optionsRect.left > viewportWidth ? 'right:0' : 'left:0'
   }
 }
 
 onMounted(() => {
   window.addEventListener('resize', handleResize)
-  handleResize() // Initial check
+  setTimeout(() => {
+    handleResize() // Initial check
+  }, 5)
 })
 
 onUnmounted(() => {

@@ -243,9 +243,11 @@
 
     <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4">
       <div class="flex flex:row gap:10 p:10 bb:1|solid|#BFCFD4 bg:white rt:4">
-        <CommonBtn dark disable class="bg:#27353a color:white" @click="handleClick">Dark</CommonBtn>
-        <CommonBtn dark disable class="bg:red color:white" @click="handleClick">Dark</CommonBtn>
-        <CommonBtn outline light disable class="bg:white" @click="handleClick">
+        <CommonBtn dark disabled class="bg:#27353a color:white" @click="handleClick"
+          >Dark</CommonBtn
+        >
+        <CommonBtn dark disabled class="bg:red color:white" @click="handleClick">Dark</CommonBtn>
+        <CommonBtn outline light disabled class="bg:white" @click="handleClick">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -261,7 +263,7 @@
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
         </CommonBtn>
-        <CommonBtn flat disable class="color:white" @click="handleClick">
+        <CommonBtn flat disabled class="color:white" @click="handleClick">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -278,7 +280,7 @@
           </svg>
           Flat
         </CommonBtn>
-        <CommonBtn outline dense light disable class="bg:white color:blue" @click="handleClick">
+        <CommonBtn outline dense light disabled class="bg:white color:blue" @click="handleClick">
           Outline+Dense
         </CommonBtn>
       </div>
@@ -457,8 +459,8 @@ const outlineBtn = `<CommonBtn outline light class="bg:white" @click="handleClic
 </CommonBtn>`
 
 const disableBtn = `<CommonBtn dark disable class="bg:#27353a color:white" @click="handleClick">Dark</CommonBtn>
-<CommonBtn dark disable class="bg:red color:white" @click="handleClick">Dark</CommonBtn>
-<CommonBtn outline light disable class="bg:white" @click="handleClick">
+<CommonBtn dark disabled class="bg:red color:white" @click="handleClick">Dark</CommonBtn>
+<CommonBtn outline light disabled class="bg:white" @click="handleClick">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -474,7 +476,7 @@ const disableBtn = `<CommonBtn dark disable class="bg:#27353a color:white" @clic
     <polyline points="22 4 12 14.01 9 11.01"></polyline>
   </svg>
 </CommonBtn>
-<CommonBtn flat disable class="color:white" @click="handleClick">
+<CommonBtn flat disabled class="color:white" @click="handleClick">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -491,7 +493,7 @@ const disableBtn = `<CommonBtn dark disable class="bg:#27353a color:white" @clic
   </svg>
   Flat
 </CommonBtn>
-<CommonBtn outline dense light disable class="bg:white color:blue" @click="handleClick">
+<CommonBtn outline dense light disabled class="bg:white color:blue" @click="handleClick">
   Outline+Dense
 </CommonBtn>`
 

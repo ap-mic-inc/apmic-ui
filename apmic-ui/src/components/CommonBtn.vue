@@ -1,9 +1,9 @@
 <template>
   <button
     class="btn flex jc:center"
-    :class="{ flat, dense, outline, dark, light, disable, colorbase }"
-    :disabled="disable"
-    @click="$emit('click')"
+    :class="{ flat, dense, outline, dark, light, disabled, colorbase }"
+    :disabled="disabled"
+    @click="handleClick()"
   >
     <slot></slot>
   </button>
@@ -35,11 +35,15 @@ defineProps({
     type: Boolean,
     default: false
   },
-  disable: {
+  disabled: {
     type: Boolean,
     default: false
   }
 })
 
-defineEmits(['click'])
+const emit = defineEmits(['click'])
+
+const handleClick = (event) => {
+  emit('click', event)
+}
 </script>

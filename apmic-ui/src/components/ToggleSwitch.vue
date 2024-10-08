@@ -1,7 +1,7 @@
 <template>
   <div
-    class="flex ai:center gap:10 cursor:pointer box-shadow:0|0|0|10|rgba(0,0,0,0.1):hover:not(.disable)_#circle box-shadow:0|0|0|10|rgba(0,0,0,0.3)!:active:not(.disable)_#circle"
-    :class="{ disable }"
+    class="flex ai:center gap:10 cursor:pointer box-shadow:0|0|0|10|rgba(0,0,0,0.1):hover:not(.disabled)_#circle box-shadow:0|0|0|10|rgba(0,0,0,0.3)!:active:not(.disabled)_#circle"
+    :class="{ disabled }"
     @click="toggle"
   >
     <input type="checkbox" :checked="modelValue" class="hidden" />
@@ -12,7 +12,7 @@
         :class="modelValue ? 'bg:#CEE7EF' : 'bg:#82A1AB'"
       ></div>
       <div
-        class="abs h:20 w:20 round transition:all|300ms box-shadow:0|2|5|#27353a"
+        class="abs h:20 w:20 round transition:all|300ms box-shadow:0|1|3|#27353a"
         :class="modelValue ? 'translateX(17)' : ''"
       ></div>
       <div
@@ -39,7 +39,7 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  disable: {
+  disabled: {
     type: Boolean,
     default: false
   }
@@ -48,7 +48,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const toggle = () => {
-  if (!props.disable) {
+  if (!props.disabled) {
     emit('update:modelValue', !props.modelValue)
   }
 }

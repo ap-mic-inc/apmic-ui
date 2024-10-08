@@ -72,6 +72,10 @@
     <div>
       <div class="f:30 f:bold">Modify Slots</div>
       <div>You can use slots to modify you style of the selected-option, and option-items.</div>
+      <div>
+        Besides, id: selected-option, options, option-items, placeholder are provided for easily
+        adding css.
+      </div>
     </div>
 
     <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4">
@@ -113,7 +117,7 @@
     <!-- Disable -->
     <div>
       <div class="f:30 f:bold">Disable</div>
-      <div>Disable whole components with disable props.</div>
+      <div>Disable whole components with disabled props.</div>
     </div>
 
     <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4">
@@ -122,7 +126,7 @@
           v-model="selectedValue"
           :options="dropdownOptions"
           clearable
-          disable
+          disabled
           placeholder="Choose an option"
         >
           <template #selected-option="{ option }">
@@ -265,7 +269,7 @@ const dropdownDisableCode = `<DropdownMenu
   v-model="selectedValue"
   :options="dropdownOptions"
   clearable
-  disable
+  disabled
   placeholder="Choose an option"
 >
   <template #selected-option="{ option }">

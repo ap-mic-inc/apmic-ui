@@ -10,6 +10,7 @@
         Use label props to put text inside, you can also set the label to show on right by using
         right props.
       </div>
+      <div>Besides, you can use id: checkbox, tickbox to modify css class inside.</div>
     </div>
 
     <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4">
@@ -29,8 +30,8 @@
 
     <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4">
       <div class="flex flex:row gap:10 p:10 bb:1|solid|#BFCFD4 bg:white rt:4">
-        <CheckBox v-model="isChecked" disable label="Left label"></CheckBox>
-        <CheckBox v-model="isChecked" right disable label="Right label"></CheckBox>
+        <CheckBox v-model="isChecked" disabled label="Left label"></CheckBox>
+        <CheckBox v-model="isChecked" right disabled label="Right label"></CheckBox>
       </div>
 
       <CodeSnippet :code="checkboxDisableCode" language="xml" />
@@ -48,6 +49,6 @@ const isChecked = ref(false)
 const checkboxCode = `<CheckBox v-model="isChecked" label="Left label"></CheckBox>
 <CheckBox v-model="isChecked" right label="Right label"></CheckBox>`
 
-const checkboxDisableCode = `<CheckBox v-model="isChecked" disable label="Left label"></CheckBox>
-<CheckBox v-model="isChecked" right disable label="Right label"></CheckBox>`
+const checkboxDisableCode = `<CheckBox v-model="isChecked" disabled label="Left label"></CheckBox>
+<CheckBox v-model="isChecked" right disabled label="Right label"></CheckBox>`
 </script>

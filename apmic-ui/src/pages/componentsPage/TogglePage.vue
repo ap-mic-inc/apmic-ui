@@ -29,8 +29,8 @@
 
     <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4">
       <div class="flex flex:row gap:10 p:10 bb:1|solid|#BFCFD4 bg:white rt:4">
-        <ToggleSwitch v-model="isToggle" disable label="On Left" />
-        <ToggleSwitch v-model="isToggle" right disable label="On Right" />
+        <ToggleSwitch v-model="isToggle" disabled label="On Left" />
+        <ToggleSwitch v-model="isToggle" right disabled label="On Right" />
       </div>
 
       <CodeSnippet :code="checkboxDisableCode" language="xml" />
@@ -48,6 +48,6 @@ const isToggle = ref(false)
 const checkboxCode = `<ToggleSwitch v-model="isToggle" label="On Left" />
 <ToggleSwitch v-model="isToggle" right label="On Right" />`
 
-const checkboxDisableCode = `<ToggleSwitch v-model="isToggle" disable label="On Left" />
-<ToggleSwitch v-model="isToggle" right disable label="On Right" />`
+const checkboxDisableCode = `<ToggleSwitch v-model="isToggle" disabled label="On Left" />
+<ToggleSwitch v-model="isToggle" right disabled label="On Right" />`
 </script>
