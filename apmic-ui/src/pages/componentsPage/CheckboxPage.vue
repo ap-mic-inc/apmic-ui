@@ -36,6 +36,21 @@
 
       <CodeSnippet :code="checkboxDisableCode" language="xml" />
     </div>
+
+    <!-- Customize -->
+    <div>
+      <div class="f:30 f:bold">Customize</div>
+      <div>You can customize the checkbox color with preset classes - tickColor.</div>
+    </div>
+
+    <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4">
+      <div class="flex flex:row gap:10 p:10 bb:1|solid|#BFCFD4 bg:white rt:4">
+        <CheckBox v-model="isChecked" tickColor="red"></CheckBox>
+        <CheckBox v-model="isChecked" tickColor="yellow"></CheckBox>
+      </div>
+
+      <CodeSnippet :code="checkboxCustomizeCode" language="xml" />
+    </div>
   </div>
 </template>
 
@@ -51,4 +66,7 @@ const checkboxCode = `<CheckBox v-model="isChecked" label="Left label"></CheckBo
 
 const checkboxDisableCode = `<CheckBox v-model="isChecked" disabled label="Left label"></CheckBox>
 <CheckBox v-model="isChecked" right disabled label="Right label"></CheckBox>`
+
+const checkboxCustomizeCode = `<CheckBox v-model="isChecked" tickColor="red"></CheckBox>
+<CheckBox v-model="isChecked" tickColor="yellow"></CheckBox>`
 </script>

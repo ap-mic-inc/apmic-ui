@@ -20,11 +20,12 @@
       >
         <svg
           v-if="modelValue"
+          id="check-icon"
           xmlns="http://www.w3.org/2000/svg"
           width="20px"
           height="20px"
           viewBox="0 0 24 24"
-          class="bg:#0797c7"
+          :class="`bg:${tickColor || '#0797C7'}`"
         >
           <path fill="white" d="M21 7L9 19l-5.5-5.5l1.41-1.41L9 16.17L19.59 5.59z" />
         </svg>
@@ -52,6 +53,10 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  tickColor: {
+    type: String,
+    default: ''
   }
 })
 const emit = defineEmits(['update:modelValue'])

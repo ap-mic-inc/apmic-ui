@@ -9,7 +9,7 @@
     <div class="rel flex ai:center">
       <div
         class="w:35 h:15 r:100 transition:all|300ms"
-        :class="modelValue ? 'bg:#CEE7EF' : 'bg:#82A1AB'"
+        :class="modelValue ? `bg:${onColor || '#CEE7EF'}` : `bg:${offColor || '#82A1AB'}`"
       ></div>
       <div
         class="abs h:20 w:20 round transition:all|300ms box-shadow:0|1|3|#27353a"
@@ -18,7 +18,11 @@
       <div
         id="circle"
         class="abs h:20 w:20 round transition:all|300ms"
-        :class="modelValue ? 'bg:#0797C7 translateX(17)' : 'bg:white'"
+        :class="
+          modelValue
+            ? `bg:${toggleOnColor || '#0797C7'} translateX(17)`
+            : `bg:${toggleOffColor || 'white'}`
+        "
       ></div>
     </div>
     <slot v-if="right">{{ label }}</slot>
@@ -42,6 +46,22 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  onColor: {
+    type: String,
+    default: ''
+  },
+  offColor: {
+    type: String,
+    default: ''
+  },
+  toggleOnColor: {
+    type: String,
+    default: ''
+  },
+  toggleOffColor: {
+    type: String,
+    default: ''
   }
 })
 
