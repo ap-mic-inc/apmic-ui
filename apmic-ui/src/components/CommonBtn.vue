@@ -3,7 +3,7 @@
     class="btn flex jc:center"
     :class="{ flat, dense, outline, dark, light, disabled, colorbase }"
     :disabled="disabled"
-    @click="handleClick()"
+    @click.stop="handleClick()"
   >
     <slot></slot>
   </button>
