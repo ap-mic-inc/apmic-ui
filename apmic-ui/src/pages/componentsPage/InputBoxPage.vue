@@ -44,8 +44,8 @@
     </div>
 
     <div class="flex flex:col b:1|solid|#BFCFD4 bg:#F6F8F9 r:4">
-      <div class="flex flex:row gap:10 p:10 bb:1|solid|#BFCFD4 bg:white rt:4">
-        <InputBox v-model="input" placeholder="Rules: text length > 3">
+      <div class="flex flex:col gap:10 p:10 bb:1|solid|#BFCFD4 bg:white rt:4">
+        <InputBox v-model="input" placeholder="Rules: text length > 3" class="w:fit">
           <template #append>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path
@@ -63,9 +63,10 @@
             </svg>
           </template>
         </InputBox>
+        <InputBox v-model="input" borderless placeholder="Rules: text length > 3"> </InputBox>
       </div>
 
-      <CodeSnippet :code="inputValidateCode" language="xml" />
+      <CodeSnippet :code="inputCustomizeCode" language="xml" />
     </div>
   </div>
 </template>
@@ -108,4 +109,16 @@ const customValidation = (value) => {
     errorMessage: ''
   }
 }`
+
+const inputCustomizeCode = `<InputBox v-model="input" disabled placeholder="Rules: text length > 3">
+  <template #append>
+    // icon here
+  </template>
+  <template #prepend>
+    // icon here
+  </template>
+</InputBox>
+<InputBox v-model="input" borderless placeholder="Rules: text length > 3">
+</InputBox>
+`
 </script>

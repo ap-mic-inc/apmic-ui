@@ -2,11 +2,13 @@
   <div class="rel pb:20" @click="focusInput">
     <div
       ref="inputComponentRef"
-      class="px:16 h:44 r:4 cursor:text transition:all|200ms b:1|solid|#27353A:focus-visible color:#BFCFD4_#input::placeholder color:#27353A:hover:not(:disabled)_#input::placeholder"
+      class="px:16 h:44 r:4 transition:all|200ms color:#BFCFD4_#input::placeholder color:#27353A:hover:not(:disabled)_#input::placeholder"
       :class="{
-        'b:1|solid|#BFCFD4': isValid,
-        'b:1|solid|#d21b0f!': !isValid,
-        'b:1|solid|#27353A!': isFocused
+        'b:1|solid|#BFCFD4': isValid && !borderless,
+        'b:1|solid|#d21b0f!': !isValid && !borderless,
+        'b:1|solid|#27353A!': isFocused && !borderless,
+        'cursor:text': !disabled,
+        'cursor:not-allowed': disabled
       }"
     >
       <div class="flex flex:row ai:center">
@@ -17,7 +19,8 @@
           :value="modelValue"
           :placeholder="placeholder"
           class="h:42 p:0 outline:none:focus-visible b:none transition:all|200ms::placeholder color:#27353A:focus-visible"
-          :class="{ 'mx:16': hasAppendContent }"
+          :class="{ 'mx:16': hasAppendContent, disabled }"
+          :disabled="disabled"
           @input="updateValue"
           @blur="runValidation"
           @focus="runValidation"
@@ -53,6 +56,10 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  borderless: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -81,7 +88,7 @@ const focusInput = () => {
   if (!props.disabled) {
     inputRef.value.focus()
     document.addEventListener('click', handleClickOutside)
-    isFocused.value = !isFocused.value
+    isFocused.value = true
   }
 }
 
