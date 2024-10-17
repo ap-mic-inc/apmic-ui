@@ -64,6 +64,12 @@
           </template>
         </InputBox>
         <InputBox v-model="input" borderless placeholder="Rules: text length > 3"> </InputBox>
+        <InputBox
+          v-model="input"
+          border-color="yellow"
+          placeholder="Rules: text length > 3"
+        ></InputBox>
+        <InputBox v-model="input" focus-color="red" placeholder="Rules: text length > 3"></InputBox>
       </div>
 
       <CodeSnippet :code="inputCustomizeCode" language="xml" />
@@ -118,7 +124,12 @@ const inputCustomizeCode = `<InputBox v-model="input" disabled placeholder="Rule
     // icon here
   </template>
 </InputBox>
-<InputBox v-model="input" borderless placeholder="Rules: text length > 3">
-</InputBox>
+<InputBox v-model="input" borderless placeholder="Rules: text length > 3" />
+<InputBox
+  v-model="input"
+  border-color="yellow"
+  placeholder="Rules: text length > 3"
+/>
+<InputBox v-model="input" focus-color="red" placeholder="Rules: text length > 3" />
 `
 </script>

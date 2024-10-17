@@ -4,9 +4,10 @@
       ref="inputComponentRef"
       class="px:16 h:44 r:4 transition:all|200ms color:#BFCFD4_#input::placeholder color:#27353A:hover:not(:disabled)_#input::placeholder"
       :class="{
-        'b:1|solid|#BFCFD4': isValid && !borderless,
-        'b:1|solid|#d21b0f!': !isValid && !borderless,
-        'b:1|solid|#27353A!': isFocused && !borderless,
+        'b:none!': borderless,
+        [`b:1|solid|${borderColor}!`]: isValid && !isFocused,
+        'b:1|solid|#d21b0f!': !isValid,
+        [`b:1|solid|${focusColor}!`]: isFocused,
         'cursor:text': !disabled,
         'cursor:not-allowed': disabled
       }"
@@ -60,6 +61,14 @@ const props = defineProps({
   borderless: {
     type: Boolean,
     default: false
+  },
+  borderColor: {
+    type: String,
+    default: '#BFCFD4'
+  },
+  focusColor: {
+    type: String,
+    default: '#27353A'
   }
 })
 
