@@ -13,20 +13,20 @@
       }"
     >
       <div class="flex flex:row ai:center">
-        <slot name="append"></slot>
+        <slot name="append" class="flex-basis:min"></slot>
         <input
           id="input"
           ref="inputRef"
           :value="modelValue"
           :placeholder="placeholder"
-          class="h:42 p:0 outline:none:focus-visible b:none transition:all|200ms::placeholder color:#27353A:focus-visible"
+          class="flex-basis:full h:42 p:0 outline:none:focus-visible b:none transition:all|200ms::placeholder color:#27353A:focus-visible"
           :class="{ 'mx:16': hasAppendContent, disabled }"
           :disabled="disabled"
           @input="updateValue"
           @blur="runValidation"
           @focus="runValidation"
         />
-        <slot name="prepend"></slot>
+        <slot name="prepend" class="flex-basis:min"></slot>
       </div>
     </div>
     <div
