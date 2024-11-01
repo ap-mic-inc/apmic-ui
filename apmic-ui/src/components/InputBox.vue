@@ -70,13 +70,9 @@ const props = defineProps({
     type: String,
     default: '#27353A'
   },
-  onCustomBlur: {
-    type: Function,
-    default: null
-  }
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue','blur'])
 
 const inputRef = ref(null)
 const inputComponentRef = ref(null)
@@ -108,9 +104,7 @@ const focusInput = () => {
 const handleBlur = (event) => {
   runValidation(event);
   // If custom blur handler is provided, call it
-  if (props.onCustomBlur) {
-    props.onCustomBlur(event);
-  }
+  emit('blur',event)
 };
 
 const handleClickOutside = (e) => {
