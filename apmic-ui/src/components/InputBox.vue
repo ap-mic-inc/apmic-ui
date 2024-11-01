@@ -23,7 +23,7 @@
           :class="{ 'mx:16': hasAppendContent, disabled }"
           :disabled="disabled"
           @input="updateValue"
-          @blur="runValidation"
+          @blur="handleBlur"
           @focus="runValidation"
         />
         <slot name="prepend" class="flex-basis:min"></slot>
@@ -69,6 +69,10 @@ const props = defineProps({
   focusColor: {
     type: String,
     default: '#27353A'
+  },
+  onCustomBlur: {
+    type: Function,
+    default: null
   }
 })
 
@@ -100,6 +104,14 @@ const focusInput = () => {
     isFocused.value = true
   }
 }
+
+const handleBlur = (event) => {
+  runValidation(event);
+  // If custom blur handler is provided, call it
+  if (props.onCustomBlur) {
+    props.onCustomBlur(event);
+  }
+};
 
 const handleClickOutside = (e) => {
   if (inputComponentRef.value && !inputComponentRef.value.contains(e.target)) {
